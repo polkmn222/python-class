@@ -7,4 +7,5 @@ class Emp:
     def __str__(self): 
         return f"{self.num}\t{self.name}\t{self.phone}"
     
-    
+    def __eq__(self, other):
+        return self.num == other.num

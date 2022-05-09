@@ -8,4 +8,4 @@ Day1 : 파이썬 인터프리터의 이해, Jupyter notebook 활용하기, 주�
 Day2 : 랜덤, 정렬, 추출, 삭제, 평균값, 슬라이스, True, False, and, 논리 연산자, 날짜, list, dictionary, set   
 Day3 : Collection(list, tuple, dictionary, set), 함수, 모듈, 클래스      
 Day4 : CRUD, FILE       
-
+Day5 : File IO   
