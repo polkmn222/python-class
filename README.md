@@ -9,3 +9,5 @@ Day2 : 랜덤, 정렬, 추출, 삭제, 평균값, 슬라이스, True, False, and
 Day3 : Collection(list, tuple, dictionary, set), 함수, 모듈, 클래스      
 Day4 : CRUD, FILE       
 Day5 : File IO   
+Day6 : pickle 모듈을 사용한 직렬화/역직렬화(Serialization/Deserialization), Thread   
+
