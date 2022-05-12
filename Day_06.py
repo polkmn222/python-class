@@ -9,6 +9,7 @@
 # - 메시지(수신자, 송신자, 그룹, 텍스트)
 # 직렬화 : 객체를 파일에 저장가능, 객체를 네트워크 전송
 # * Thread
+# * Socket client
 
 # In[ ]:
 
@@ -455,7 +456,65 @@ my_thread.start()
 # In[ ]:
 
 
-# 키보드에서 숫자가 입력될 때 마다 해당 숫자로부터 1씩 감소하면서 출력하는
-# 기능 숫자가 0에 도달할 때 까지 반복해서 1초에 한 번씩 화면에 표시함
-# 5 4 3 2 1 0
+# 서버에 접속, 데이터 송수신
+# 서버는 클라이언트 접속 대기 상태로 존재해야 함
+# 서버는 특정 클라이언트 간의 통신 중개 역할
+
+from socket import *
+import pickle
+import time
+
+clientSock = socket(AF_INET, SOCK_STREAM) # 소켓 생성
+clientSock.connect(('127.0.0.1', 1122))   # 서버에 접속
+
+msg = clientSock.recv(1024)               # 서버 데이터 수신 대기
+print(msg.decode('utf-8'))                # 서버로부터 수신된 데이터를 화면에 표시
+
+clientSock.send('클라이언트 메시지'.encode('utf-8'))
+
+time.sleep(1)
+print('클라이언트 종료...')
+
+
+# In[ ]:
+
+
+class ChatMsg:
+    def __init__(self, contents, to=None, frm=None, attach=None):
+        self.contents = contents
+        self.to = to
+        self.frm = frm
+        self.attach = attach
+        
+    def __str__(self):
+        return "contents={}, frm={}, to={}".format(self.contents, self.to, self.frm)
+
+
+# In[ ]:
+
+
+from socket import *
+import pickle
+import time
+from chat import ChatMsg
+
+clientSock = socket(AF_INET, SOCK_STREAM)  # 소켓 생성
+clientSock.connect(('127.0.0.1', 1122))    # 서버에 접속
+
+msg = clientSock.recv(1024)                # 서버 데이터 수신 대기
+print(pickle.loads(msg))                   # 서버로부터 수신된 데이터를 화면에 표시
+
+chatmsg = ChatMsg('클라이언트에서 전하는 말')
+clientSock.send(pickle.dumps(chatmsg))
+
+time.sleep(1)
+clientSock.close()
+print('클라이언트 종료...')
+
+
+# In[ ]:
+
+
+# 서버에서 수신되는 메시지는 루프를 사용하여 대기한다
+# 클라이언트는 임의의 시기에 메시지를 서버로 전달가능해야 한다
 
