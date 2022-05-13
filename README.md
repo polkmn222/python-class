@@ -11,6 +11,7 @@ Day4 : CRUD, FILE
 Day5 : File IO   
 Day6 : pickle 모듈을 사용한 직렬화/역직렬화(Serialization/Deserialization), Thread   
 Day7 : Thread, Socket, 전구 소켓, 소켓   
-Day8 : 채팅, 파일 전송, mysql   
+Day8 : 채팅, 파일 전송, mysql    
+Day9 : MySQL CRUD   
 
 
